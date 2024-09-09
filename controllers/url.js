@@ -5,6 +5,7 @@ async function handleGenerateShortURL(req, res) {
     const body = req.body;
     if(!body.url) {
         return res.status(400).json({ message: 'URL is required' });
+    }
     const shortID = shortid( );
     await create({ shortID, 
         redirectURL: body.url,
@@ -12,7 +13,6 @@ async function handleGenerateShortURL(req, res) {
         visitHistory: []
     
      });
-    }
      return res.json({ id: shortID });
 }
 module.exports = { handleGenerateShortURL };

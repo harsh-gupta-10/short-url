@@ -1,5 +1,5 @@
 const express = require('express');
-const {handleGenerateShortURL} = require('../controllers/url');
+const { handleGenerateShortURL } = require('../controllers/url');
 
 const router = express.Router();
 
