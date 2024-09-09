@@ -1,26 +1,15 @@
-const { type, redirect } = require('express/lib/response');
 const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
-    shortID: {
-        type: String, 
-        required: true,
-        unqiue: true
-    },
+    shortID: { type: String, required: true },
+    redirectURL: { type: String, required: true },
+    visitHistory: [
+        {
+            timestamp: { type: Date, default: Date.now }  // Ensure this is of type Date
+        }
+    ]
+});
 
-    redirectURL: {
-        type: String,
-        required: true
-    },
-    countclicks: {
-        type: Number,
-        default: 0
-    },
-    visitHistory: [ { timestamp: {type: Number} } ],
-    }, 
-    {timestamp: true}
-);
+const URL = mongoose.model('URL', urlSchema);
 
-const { URL } = mongoose.model('URL', urlSchema);
-
-module.exports = URL;
+module.exports = URL;  // Corrected typo
